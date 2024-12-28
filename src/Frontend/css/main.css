@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+body {
+	background-color: #F0EDED;
+	height: 100vh;
+	display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+ul li.item-menu{
+	transition: 0.2s ease-out;
+}
+
+ul li.ativo{
+	background: #d63b4b;
+}
+
+
+ul li.item-menu:hover{
+	background: #d63b4b;
+}
+
+nav.menu-lateral{
+	width: 75px;
+	height: 100%;
+	background-color: #FCFCFC;
+	padding: 40px 0 40px 1%;
+	box-shadow: 0.2px 0 25px #333333;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	transition: all ease 0.5s;
+	z-index: 1;
+}
+
+nav.menu-lateral.expandir{
+	width: 300px;
+}
+
+.btn-expandir{
+	width: 100%;
+	padding-left: 5px;
+}
+
+.btn-expandir > i{
+	color: #3C4043;
+	font-size: 40px;
+	cursor: pointer;
+}
+
+ul{
+	height: 100%;
+	list-style-type: none;
+}
+
+
+ul li.item-menu a{
+	color: #3C4043;
+	text-decoration: none;
+	font-size: 16px;
+	padding: 20px 4%;
+	display: flex;
+	line-height: 38px;
+	position: relative;
+	transition: 0.2s;
+}
+
+ul li.item-menu a.ativo{
+	color: #FCFCFC;
+}
+
+ul li.item-menu a:hover{
+	color: #FCFCFC;
+	transition: 0.1s;
+}
+
+ul li.item-menu.ativo a {
+    color: #FCFCFC; /* Cor branca para o item ativo */
+}
+
+ul li.item-menu a .txt-link{
+	margin-left: 50px;
+	white-space: nowrap;
+	transition: 0.5s;
+	opacity: 0;
+}
+
+nav.menu-lateral.expandir .txt-link{
+	margin-left: 25px;
+	opacity: 1;
+}
+
+ul li.item-menu a .icone > i{
+	font-size: 28px;
+	margin-left: 5px;
+}
+
+.icone-button{
+	color: #d63b4b;
+	font-size: 55px;
+	padding-bottom: 10px;
+}
+
+.buttons{
+	display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 80px; 
+	
+}
+
+.buttons .button{
+	color: #333333;
+	text-decoration: none;
+	font-size: 20px;
+	font-weight: 600;
+	padding: 30px 30px;
+
+	display: flex;
+    flex-direction: column; 
+    align-items: center; 
+
+	background-color: #FFFFFF ;
+	border-radius: 16px;
+	box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.2);
+	transition: 0.2s;
+}
+
+.buttons .button:hover{
+	transform: scale(1.2);
+}
+
+footer {
+    background-color: #B31419; 
+    color: white;           
+    padding: 20px;         
+
+    position: fixed;       
+    width: 100%; 
+	height: 60px;           
+    bottom: 0;              
+}
+
+.menu{
+	height: 75%;
+	font-size: 30px;
+	font-weight: 700;
+	font-style: bold;
+}
+
+.container {
+    margin-left: 100px;
+    padding: 20px;
+    width: calc(100% - 100px);
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #d63b4b;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.tabela-acessos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.tabela-acessos th, .tabela-acessos td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.tabela-acessos tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tabela-acessos .negado {
+    background-color: #ffdada;
+    text-align: center;
+}

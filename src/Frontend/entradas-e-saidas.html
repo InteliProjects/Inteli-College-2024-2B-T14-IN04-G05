@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Entradas e Saídas</title>
+    <link rel="icon" href="/assets/Frontend/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/main.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <!-- Menu Lateral -->
+    <nav class="menu-lateral">
+
+        <div class="btn-expandir">
+            <i class="bi bi-list" id="btn-exp"></i>
+        </div>
+
+        <ul>
+            <li class="item-menu ativo">
+                <a href="index.html">
+                    <span class="icone"><i class="bi bi-house-fill"></i></span>
+                    <span class="txt-link">Home</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="#">
+                    <span class="icone"><i class="bi bi-bar-chart-line-fill"></i></span>
+                    <span class="txt-link">Dashboard</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="#">
+                    <span class="icone"><i class="bi bi-mortarboard-fill"></i></span>
+                    <span class="txt-link">Dados professores</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="#">
+                    <span class="icone"><i class="bi bi-pencil-fill"></i></span>
+                    <span class="txt-link">Dados Alunos</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="#">
+                    <span class="icone"><i class="bi bi-people-fill"></i></span>
+                    <span class="txt-link">Dados responsáveis</span>
+                </a>
+            </li>
+            <li class="item-menu ativo">
+                <a href="entradas-e-saidas.html">
+                    <span class="icone"><i class="bi bi-door-open-fill"></i></span>
+                    <span class="txt-link">Entradas e saídas</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="#">
+                    <span class="icone"><i class="bi bi-clock-fill"></i></span>
+                    <span class="txt-link">Ponto eletrônico</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <div class="container">
+        <h1>Entradas e Saídas</h1>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Pesquisar" />
+            <button onclick="fetchHistoricoAcesso()">Filtrar</button>
+        </div>
+        <table class="tabela-acessos">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cargo</th>
+                    <th>Data e Hora</th>
+                    <th>Dia da Semana</th>
+                    <th>Porta</th>
+                    <th>Entrada/Saída</th>
+                </tr>
+            </thead>
+            <tbody id="historico-tbody">
+                <!-- Conteúdo preenchido dinamicamente -->
+            </tbody>
+        </table>
+    </div>
+
+    <footer></footer>
+    
+    <script src="js/menuSelector.js"></script>
+    <script src="js/menuExpander.js"></script>
+    <script>
+        async function fetchHistoricoAcesso() {
+            try {
+                const response = await fetch('https://inteli.azurewebsites.net/api/HistoricoAcesso'); // Atualize com a URL da API real
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar os dados: ' + response.statusText);
+                }
+                const data = await response.json();
+                const tbody = document.getElementById('historico-tbody');
+                tbody.innerHTML = '';
+                console.log(data)
+                data.dados  .forEach(item => {
+                    const row = document.createElement('tr');
+                    item.data = new Date(item.data);
+                    const dataFormatada = `${item.data.getDate().toString().padStart(2, '0')}/${(item.data.getMonth() + 1).toString().padStart(2, '0')}/${item.data.getFullYear()}`;
+
+                    row.innerHTML = `
+                        <td>${item.pessoa.nome}</td>
+                        <td>${item.pessoa.tipoPessoa.tipo_Pessoa_Desc}</td>
+                        <td>${dataFormatada} - ${item.horario}</td>
+                        <td>${obterDiaSemana(item.data)}</td>
+                        <td>${item.area.area}</td>
+                        <td>${item.entrada_Saida ? 'Entrada' : 'Saída'}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Erro:', error);
+            }
+        }
+
+        function obterDiaSemana(dataString) {
+            const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+            const data = new Date(dataString);
+            const diaSemana = data.getDay();
+            return diasSemana[diaSemana];
+        }
+
+        // Chamar a função para carregar os dados ao carregar a página
+        window.onload = fetchHistoricoAcesso;
+    </script>
+</body>
+</html>

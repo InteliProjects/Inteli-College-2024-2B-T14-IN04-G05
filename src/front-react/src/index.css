@@ -1,0 +1,15 @@
+/* Importa os estilos base fornecidos pelo Tailwind CSS.
+   Isso inclui resets padrão e estilos fundamentais para a aplicação.
+*/
+@tailwind base;
+
+/* Importa os componentes do Tailwind CSS.
+   Permite que você adicione ou sobrescreva estilos de componentes reutilizáveis.
+*/
+@tailwind components;
+
+/* Importa as utilidades do Tailwind CSS.
+   Inclui classes utilitárias como `m-4`, `p-2`, `text-center`, etc.,
+   que podem ser usadas diretamente no HTML ou JSX.
+*/
+@tailwind utilities;
